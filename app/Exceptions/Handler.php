@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Vinkla\Instagram\Instagram;
+use Vinkla\Instagram\InstagramException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof InstagramException){
+            return abort(403, $exception->getMessage());
+        }
+
         return parent::render($request, $exception);
     }
 }

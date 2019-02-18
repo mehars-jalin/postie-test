@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Request;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'insta_username',
     ];
 
     /**
@@ -36,4 +37,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function findByInstaUserName($username){
+        return $this->where('insta_username',$username)->first();
+    }
+
+    public function UserMedia(){
+        return $this->hasMany(UserMedia::class,'user_id','id');
+    }
+
+    public function getTotalPointsOfAuser(){
+        return $this->hasMany(UserMedia::class)->select(['user_id','total_points']);
+    }
 }

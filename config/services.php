@@ -40,4 +40,9 @@ return [
         ],
     ],
 
+    'instagram' =>  [
+        'client_id'         =>  env('INSTAGRAM_CLIENT_ID'),
+        'redirect_uri'      =>  env('INSTAGRAM_REDIRECT_URI')
+    ]
+
 ];

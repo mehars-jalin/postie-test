@@ -8,6 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
 
         <!-- Styles -->
         <style>
@@ -61,39 +63,37 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            button{
+                color:#b91d19;
+            }
+            @media (min-width: 1200px){
+                .container {
+                    width: 500px;
+                    margin-top: 100px;
+                }
+                button{
+                    margin-top:10px;
+                }
+            }
+            button{
+                margin-left: 50px;
+            }
         </style>
     </head>
+
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+        <div class="position-ref full-height" id="app">
+            <div class="container">
+                <img src="https://image.freepik.com/free-vector/instagram-icon_1057-2227.jpg" alt="instagram-image" height="300px" width="300px">
+                    <button class="btn instagrame-login" onclick="sendToInstagram()">Fetch your Instagram pictures</button>
             </div>
         </div>
+
+        <script>
+             function sendToInstagram(){
+                 window.location =  "{{ request()->instagram_auth_url }}"
+             }
+
+        </script>
     </body>
 </html>
